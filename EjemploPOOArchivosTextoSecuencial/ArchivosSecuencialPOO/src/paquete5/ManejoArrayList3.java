@@ -34,14 +34,22 @@ public class ManejoArrayList3 {
         calificaciones.add(c1);
         calificaciones.add(c2);
         calificaciones.add(c3);
+        double acumulador=0;
         
+        for(int i = 0; i < calificaciones.size(); i++){
+            
+            acumulador=(acumulador)+(calificaciones.get(i).obtenerNota());
+        }            
+            acumulador=acumulador/calificaciones.size(); 
+            
         for (int i = 0; i < calificaciones.size(); i++) {
-            System.out.printf("%s - %s - %.2f\n", 
+            System.out.printf("%s - %s - %.2f\n ", 
                     calificaciones.get(i).obtenerProfesor().obtenerNombre(), 
                     calificaciones.get(i).obtenerNombreMateria(),
-                    calificaciones.get(i).obtenerNota());
+                    calificaciones.get(i).obtenerNota()
+                    );
         }
-        
+        System.out.printf("El Promedio de calificaciones es de:  %.1f\n", acumulador);
         
     }
 }

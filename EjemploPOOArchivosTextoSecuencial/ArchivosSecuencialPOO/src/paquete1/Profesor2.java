@@ -5,13 +5,15 @@
  */
 package paquete1;
 
-public class Profesor{
+public class Profesor2{
     private String nombre;
     private String tipo;
+    private int edad;
     
-    public Profesor(String n, String t){
+    public Profesor2(String n, String t, int e){
         nombre = n;
         tipo = t;
+        edad=e;
     }
     
     public void establecerNombre(String n){
@@ -32,7 +34,7 @@ public class Profesor{
     
     @Override
     public String toString(){
-      return String.format("%s - %s", nombre, tipo );  
+      return String.format("Nombre: %s\nTipo: %s\nEdad: %d\n", nombre, tipo, edad );  
         
     }
     

@@ -47,6 +47,7 @@ public class ManejoArrayList2 {
         }
         */
         
+        
         System.out.println("-----------------------------");
         
         Profesor prof3 = new Profesor("Melissa Gilbert", "contratado");
