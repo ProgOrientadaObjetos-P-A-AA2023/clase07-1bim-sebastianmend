@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import paquete5.Ciudad;
 
 
 /**
@@ -92,5 +93,9 @@ public class EscrituraArchivoSecuencial {
             
         } // fin de catch
     } 
+
+    public void establecerRegistroCiudad(Hospital ciudad1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

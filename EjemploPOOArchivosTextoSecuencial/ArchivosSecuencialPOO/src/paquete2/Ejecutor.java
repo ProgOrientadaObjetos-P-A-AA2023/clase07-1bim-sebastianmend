@@ -28,7 +28,7 @@ public class Ejecutor {
         
         // establecer el valor del atributo registro
         archivo.establecerRegistro(profesor2);
-        // establecer en el archivo el atributo del registro
+        // establecer en el archivo el atributo del registro |
         archivo.establecerSalida();
             
         // establecer el valor del atributo registro
@@ -44,3 +44,4 @@ public class Ejecutor {
         lectura.cerrarArchivo();
     }
 }
+ 
