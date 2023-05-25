@@ -1,46 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package paquete5;
 
 import java.io.Serializable;
 
-/**
- *
- * @author SALA I
- */
 public class Ciudad implements Serializable {
 
     private String nombre;
-    private int habitantes;
+    private String provincia;
 
-    public Ciudad(String n, int h) {
+    public Ciudad(String n, String p) {
         nombre = n;
-        habitantes = h;
+        provincia = p;
 
-    }
-
-    public String obtenerNombre() {
-        return nombre;
     }
 
     public void establecerNombre(String n) {
         nombre = n;
     }
 
-    public int obtenerHabitantes() {
-        return habitantes;
+    public void establecerProvincia(String p) {
+        provincia = p;
     }
 
-    public void establecerHabitantes(int h) {
-        habitantes = h;
+    public String obtenerNombre() {
+        return nombre;
     }
 
-    @Override
-    public String toString() {
-        String valor = String.format("%s-%d\n", obtenerNombre(), obtenerHabitantes());
-        return valor;
+    public String obtenerProvincia() {
+        return provincia;
     }
 
 }
+
+// @cbhas & @sebastianmend

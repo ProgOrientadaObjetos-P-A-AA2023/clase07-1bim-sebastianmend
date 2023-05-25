@@ -10,10 +10,8 @@ import java.util.ArrayList;
 public class LecturaArchivoSecuencial {
 
     private ObjectInputStream entrada;
-    private ArrayList<Hospital> hospital;
+    private ArrayList<Hospital> hospitales;
     private String nombreArchivo;
-    private String identificador;
-    private Ciudad ciudadBuscada;
 
     public LecturaArchivoSecuencial(String n) {
         nombreArchivo = n;
@@ -23,7 +21,7 @@ public class LecturaArchivoSecuencial {
                 entrada = new ObjectInputStream(
                         new FileInputStream(n));
             } catch (IOException ioException) {
-                System.err.println("Error al abrir el archivo." + ioException);
+                System.err.println("Error al abrir el archivo.");
             }
         }
     }
@@ -32,15 +30,15 @@ public class LecturaArchivoSecuencial {
         nombreArchivo = n;
     }
 
-    public void establecerProfesores() {
-        hospital = new ArrayList<>();
+    public void establecerListaHospitales() {
+        hospitales = new ArrayList<>();
         File f = new File(obtenerNombreArchivo());
         if (f.exists()) {
 
             while (true) {
                 try {
                     Hospital registro = (Hospital) entrada.readObject();
-                    hospital.add(registro);
+                    hospitales.add(registro);
                 } catch (EOFException endOfFileException) {
                     return;
 
@@ -49,72 +47,36 @@ public class LecturaArchivoSecuencial {
                 } catch (ClassNotFoundException ex) {
                     System.err.println("No se pudo crear el objeto: " + ex);
                 } catch (Exception ex) {
-                    System.err.println("No hay datos en el archivo: " + ex);
-
+                    break;
                 }
             }
         }
     }
 
-    public void establecerIdentificador(String n) {
-        identificador = n;
-    }
-
-    public void establecerCiudadBuscada() {
-        File f = new File(obtenerNombreArchivo());
-        if (f.exists()) {
-
-            while (true) {
-                try {
-                    Ciudad registro = (Ciudad) entrada.readObject();
-
-                    if (registro.obtenerNombre().equals(identificador)) {
-                        ciudadBuscada = registro;
-                        break;
-                    }
-
-                } catch (EOFException endOfFileException) {
-                    return;
-
-                } catch (IOException ex) {
-                    System.err.println("Error al leer el archivo: " + ex);
-                } catch (ClassNotFoundException ex) {
-                    System.err.println("No se pudo crear el objeto: " + ex);
-                } catch (Exception ex) {
-                    System.err.println("No hay datos en el archivo: " + ex);
-
-                }
-            }
-        }
-    }
-
-    public ArrayList<Hospital> obtenerHospital() {
-        return hospital;
+    public ArrayList<Hospital> obtenerListaHospitales() {
+        return hospitales;
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
     }
 
-    public String obtenerIdentificador() {
-        return identificador;
-    }
-
-    public Ciudad obtenerCiudadBuscada() {
-        return ciudadBuscada;
-    }
-
     @Override
     public String toString() {
-        String cadena = "Lista de Ciudades\n";
-        for (int i = 0; i < obtenerHospital().size(); i++) {
-            Hospital h = obtenerHospital().get(i);
-            cadena = String.format("%s(%d) %s-%d\n", cadena,
-                    i + 1,
-                    h.obtenerNombre(),
-                    h.obtenerNumeroCamas());
-        }
+        String cadena = "Lista de Hospitales";
+        for (int i = 0; i < obtenerListaHospitales().size(); i++) {
+            Hospital h = obtenerListaHospitales().get(i);
+            cadena = String.format("%s\nHOSPITAL %S\nCiudad - %s\n"
+                    + "Provincia - %s\nNúmero Camas - %d\nPresupuesto - $%.2f"
+                    + "\n\n",
+                    cadena,
+                    h.ObtenerNombre(),
+                    h.obtenerCiudad().obtenerNombre(),
+                    h.obtenerCiudad().obtenerProvincia(),
+                    h.obtenerNumeroCamas(),
+                    h.obtenerPresupuesto());
 
+        }
         return cadena;
     }
 
@@ -130,3 +92,5 @@ public class LecturaArchivoSecuencial {
         }
     }
 }
+
+// @cbhas & @sebastianmend

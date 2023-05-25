@@ -9,18 +9,18 @@ public class EscrituraArchivoSecuencial {
 
     private String nombreArchivo;
     private ObjectOutputStream salida;
-    private Hospital registroHospital;
-    private ArrayList<Hospital> listaHospitales;
+    private Hospital registro;
+    private ArrayList<Hospital> lista;
 
     public EscrituraArchivoSecuencial(String nombreArc) {
         nombreArchivo = nombreArc;
-        establecerListaCiudades();
+        establecerLista();
         try {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
-            if (obtenerListaHospital().size() > 0) {
-                for (int i = 0; i < obtenerListaHospital().size(); i++) {
-                    establecerRegistroHospital(obtenerListaHospital().get(i));
+            if (obtenerLista().size() > 0 && obtenerLista() != null) {
+                for (int i = 0; i < obtenerLista().size(); i++) {
+                    establecerRegistro(obtenerLista().get(i));
                     establecerSalida();
                 }
             }
@@ -33,31 +33,32 @@ public class EscrituraArchivoSecuencial {
         nombreArchivo = n;
     }
 
-    public void establecerRegistroHospital(Hospital h) {
-        registroHospital = h;
+    public void establecerRegistro(Hospital p) {
+        registro = p;
     }
 
     public void establecerSalida() {
         try {
-            salida.writeObject(registroHospital);
+            salida.writeObject(registro);
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
     }
 
-    public void establecerListaCiudades() {
-        LecturaArchivoSecuencial l
-                = new LecturaArchivoSecuencial(obtenerNombreArchivo());
-        l.establecerProfesores();
-        listaHospitales = l.obtenerCiudad();
+    public void establecerLista() {
+        LecturaArchivoSecuencial l = new LecturaArchivoSecuencial(
+                obtenerNombreArchivo()
+        );
+        l.establecerListaHospitales();
+        lista = l.obtenerListaHospitales();
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
     }
 
-    public ArrayList<Hospital> obtenerListaHospital() {
-        return listaHospitales;
+    public ArrayList<Hospital> obtenerLista() {
+        return lista;
     }
 
     public ObjectOutputStream obtenerSalida() {
@@ -76,3 +77,5 @@ public class EscrituraArchivoSecuencial {
     }
 
 }
+
+// @cbhas & @sebastianmend
